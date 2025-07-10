@@ -7,6 +7,9 @@ app.use(helmet.hidePoweredBy());
 app.use(helmet.frameguard({ action: "deny" }));
 // middleware to combat clickjacking and iframing with malicious context;
 //// sets X-Frame-Options header to deny, sameorigin, or allow-from
+app.use(helmet.xssFilter());
+// middleware to serve as basic protection against XSS;
+//// browser detects potential malicious script injections and neutralizes it
 
 module.exports = app;
 const api = require("./server.js");

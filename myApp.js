@@ -4,6 +4,9 @@ const helmet = require("helmet");
 
 app.use(helmet.hidePoweredBy());
 // middleware to remove X-Powered-By header to prevent bad actors from seeing that app uses Express
+app.use(helmet.frameguard({ action: "deny" }));
+// middleware to combat clickjacking and iframing with malicious context;
+//// sets X-Frame-Options header to deny, sameorigin, or allow-from
 
 module.exports = app;
 const api = require("./server.js");

@@ -37,6 +37,9 @@ app.use(
 // implements a security policy that only allows scripts to be run from the site itself;
 //// a CSP defines a whitelist of allowed content sources; provides granular control;
 //// protects against XSS, tracking, framing, or any other injection-based attack; unsupported by older browsers
+app.use(helmet());
+// catch-all parent middleware that automatically implements all of the above middleware except for noCache and CSP;
+//// pass an optional configuration object to disable or configure included middleware
 
 module.exports = app;
 const api = require("./server.js");

@@ -24,6 +24,8 @@ app.use(helmet.dnsPrefetchControl());
 // prevents browsers from prefetching DNS records for page links; downgrades performance for security;
 //// protects against DNS overuse, privacy concerns (bad actor could see which DNS records are fetched and infer
 //// which site you're on), or page statistics alteration
+app.use(helmet.noCache());
+// disables caching on client browser; lose performance benefits
 
 module.exports = app;
 const api = require("./server.js");

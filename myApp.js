@@ -10,6 +10,9 @@ app.use(helmet.frameguard({ action: "deny" }));
 app.use(helmet.xssFilter());
 // middleware to serve as basic protection against XSS;
 //// browser detects potential malicious script injections and neutralizes it
+app.use(helmet.noSniff());
+// middleware that prevents content/MIME sniffing overrides of a response's Content-Type header;
+//// sets X-Content-Type-Options to nosniff and prevents browser from bypassing Content-Type
 
 module.exports = app;
 const api = require("./server.js");

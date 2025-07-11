@@ -13,6 +13,9 @@ app.use(helmet.xssFilter());
 app.use(helmet.noSniff());
 // middleware that prevents content/MIME sniffing overrides of a response's Content-Type header;
 //// sets X-Content-Type-Options to nosniff and prevents browser from bypassing Content-Type
+app.use(helmet.ieNoOpen());
+// not often used, as Internet Explorer is deprecated, but some versions of IE download and open untrusted HTML by default;
+//// .ieNoOpen() sets X-Download-Options header to noopen
 
 module.exports = app;
 const api = require("./server.js");

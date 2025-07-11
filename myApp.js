@@ -20,6 +20,10 @@ const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
 app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds, force: true }));
 // force site to adhere to HSTS and avoid HTTP; can only be used if domain has SSL/TLS certificate
 //// protects against protocol downgrade and cookie hijacking
+app.use(helmet.dnsPrefetchControl());
+// prevents browsers from prefetching DNS records for page links; downgrades performance for security;
+//// protects against DNS overuse, privacy concerns (bad actor could see which DNS records are fetched and infer
+//// which site you're on), or page statistics alteration
 
 module.exports = app;
 const api = require("./server.js");

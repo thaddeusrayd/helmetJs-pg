@@ -16,6 +16,10 @@ app.use(helmet.noSniff());
 app.use(helmet.ieNoOpen());
 // not often used, as Internet Explorer is deprecated, but some versions of IE download and open untrusted HTML by default;
 //// .ieNoOpen() sets X-Download-Options header to noopen
+const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
+app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds, force: true }));
+// force site to adhere to HSTS and avoid HTTP; can only be used if domain has SSL/TLS certificate
+//// protects against protocol downgrade and cookie hijacking
 
 module.exports = app;
 const api = require("./server.js");

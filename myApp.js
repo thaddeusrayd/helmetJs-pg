@@ -26,6 +26,17 @@ app.use(helmet.dnsPrefetchControl());
 //// which site you're on), or page statistics alteration
 app.use(helmet.noCache());
 // disables caching on client browser; lose performance benefits
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "trusted-cdn.com"],
+    },
+  })
+);
+// implements a security policy that only allows scripts to be run from the site itself;
+//// a CSP defines a whitelist of allowed content sources; provides granular control;
+//// protects against XSS, tracking, framing, or any other injection-based attack; unsupported by older browsers
 
 module.exports = app;
 const api = require("./server.js");
